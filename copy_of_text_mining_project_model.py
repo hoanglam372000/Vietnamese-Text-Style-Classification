@@ -9,16 +9,6 @@ Original file is located at
 # Import libs
 """
 
-# !nvidia-smi
-# !rm -r results/ logs/ wandb/
-
-# !pip install --quiet transformers
-# !pip install --quiet datasets
-# !pip install --quiet wandb
-# !pip install --quiet underthesea
-
-# from google.colab import drive
-# drive.mount('/content/drive')
 
 import pandas as pd
 import numpy as np
@@ -26,59 +16,10 @@ import os
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments, AutoModel
 from datasets import Dataset
-#from sklearn.model_selection import train_test_split
 from datasets import load_metric
-# import wandb
 import re 
 from underthesea import word_tokenize
 
-# # nghethuat
-# !gdown --id 1uE2QHeJrv_eM8pTAbCpYkZtq4v98USxg
-# !gdown --id 1terNR0xZtBa5IAipfxO88XFwJdZjc0_t
-# !gdown --id 1Bva3f0rBNmI5AXmBQI1gHTs9tNqK37sI
-# # baochi
-# !gdown --id 1Ot_mNsTbvi7MQOEkZXE4EgPq2MXcMlA4
-#
-# # sinhhoat
-# !gdown --id 1-6Kp2CepcRbjwmxCkh4y9dLsF9tTYXQo
-#
-# # khoa hoc
-# !gdown --id 1HqWsIqOfhPsZzYqePrys-sIOK2FSIk6W
-#
-# # hanh chinh
-# !gdown --id 1-qSyaPb3OZCI57pw37Sg7GMILHMMxZpv
-#
-# #chinh luan
-# !gdown --id 1yXEglRsGdkqn5hjuVYKh2OZ9UkSKsP4e
-#
-# """# Read csvs"""
-#
-# df = []
-# df = pd.DataFrame({'text': [], 'label': []})
-# for filename in os.listdir():
-#     if filename[-3:] == 'csv':
-#         print(filename)
-#         temp = pd.read_csv(filename, encoding = 'utf-8')
-#         if 'Type' in temp.columns:
-#             temp = temp.rename({'Text': 'text', 'Type': 'label'}, axis = 1)
-#         df = pd.concat([df, temp])
-
-
-# df = df.drop([0], axis = 1, errors = 'ignore')
-# df = df.dropna(subset = ['label', 'text'])
-# df = df.drop(['Unnamed: 0'], axis = 1)
-# print(df.shape)
-# df = df.drop_duplicates(subset=['text']).reset_index(drop = True)
-# print(df.shape)
-# display(df)
-#
-# df.label.value_counts()
-#
-# seed = 15
-# train_df, test_df = train_test_split(df, test_size=0.3, stratify = df['label'], random_state = seed)
-# train_df, val_df = train_test_split(train_df, test_size=0.2, stratify = train_df['label'], random_state = seed)
-#
-# print(train_df.shape, val_df.shape, test_df.shape)
 
 """# Hyperparameters"""
 
@@ -108,129 +49,13 @@ eval_steps = 50
 tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 #model = AutoModelForSequenceClassification.from_pretrained("vinai/phobert-base", num_labels= num_labels)
 
-#!cp -r ./sample_data /content/drive/MyDrive
 
-"""# Create custom Dataset + Padding"""
-
-# def create_dataset(df):
-#     df['text'] = df['text'].astype(str)
-#     df['label'] = df['label'].replace(['bao chi','sinh hoat','nghe thuat', 'khoa hoc', 'HC','chinh luan'],[0,1,2,3,4,5])
-#     dataset = {'text': df['text'], 'label': df['label']}
-#     dataset = Dataset.from_dict(dataset)
-#     return dataset
-#
-# train_dataset = create_dataset(train_df)
-# val_dataset = create_dataset(val_df)
-# test_dataset = create_dataset(test_df)
-#
-# print(train_dataset, val_dataset, test_dataset)
 
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True, max_length = max_seq_len)
 
-# train_dataset = train_dataset.map(tokenize_function, batched=True)
-# val_dataset = val_dataset.map(tokenize_function, batched=True)
-# test_dataset = test_dataset.map(tokenize_function, batched=True)
-#
-# small_train_dataset = train_dataset.select(range(100))
-# small_val_dataset = train_dataset.select(range(100, 200))
 
-"""# Metrics"""
-
-# from datasets import list_metrics
-# metrics_list = list_metrics()
-# metrics_list
-#
-# metric = load_metric("accuracy")
-#
-# def compute_metrics(eval_pred):
-#     logits, labels = eval_pred
-#     predictions = np.argmax(logits, axis=-1)
-#     return metric.compute(predictions=predictions, references=labels)
-
-"""# Modeling
-
-## Train
-"""
-
-# Commented out IPython magic to ensure Python compatibility.
-# %env WANDB_WATCH=all
-
-# training_args = TrainingArguments(
-#     output_dir=                     output_dir,
-#     num_train_epochs=               epochs,
-#     per_device_train_batch_size=    train_batch_size,
-#     per_device_eval_batch_size=     val_batch_size,
-#     warmup_steps=                   warmup_steps,
-#     weight_decay=                   weight_decay,
-#     overwrite_output_dir =          overwrite_output_dir,
-#     logging_dir=                    logging_dir,
-#     evaluation_strategy=            "steps",
-#     eval_steps=                     eval_steps,
-#
-#     report_to=                      'wandb',
-#     run_name=                       'text_mining bert',
-#     logging_steps =                 logging_steps,
-#     save_steps=                     step_per_epoch,
-#     gradient_accumulation_steps=    gradient_accumulation_steps
-#
-#
-# )
-#
-# trainer = Trainer(
-#     model=model,                         # the instantiated 🤗 Transformers model to be trained
-#     args=training_args,                  # training arguments, defined above
-#     train_dataset=train_dataset,         # training dataset
-#     eval_dataset=val_dataset,            # evaluation dataset
-#     compute_metrics = compute_metrics
-# )
-#
-# trainer.train()
-
-"""## Evaluation"""
-
-# trainer.evaluate()
-# wandb.finish()
-
-"""## Final test"""
-
-# from sklearn.metrics import classification_report
-#
-# preds = trainer.predict(test_dataset)
-# y_preds = np.argmax(np.array(preds[0]), axis = 1)
-#
-# preds
-#
-# y_preds
-#
-# from sklearn.metrics import classification_report, confusion_matrix
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-#
-# plt.rcParams["figure.figsize"] = (15,10)
-# plt.rcParams["figure.figsize"] = (15,10)
-
-#
-# print(classification_report(test_df['label'], y_preds))
-# sns.heatmap(confusion_matrix(test_df['label'], y_preds), annot = True, fmt='g')
-#
-# """# Save model"""
-#
-# trainer.model.save_pretrained("final_model_6C")
-#
-# !cp -r ./final_model_6C /content/drive/MyDrive
-
-"""# Inference
-
-## Load model
-"""
-
-# !gdown --id 1V4jhECU57OP8RCaThVbspJG-zP2jcyxt
-#
-# !mkdir final_model_6C
-# !unzip model_6_PCNN -d final_model_6C
-
-model_load = AutoModelForSequenceClassification.from_pretrained("final_model_6C")
+model_load = AutoModelForSequenceClassification.from_pretrained("pretrained_model/final_model_6C")
 
 """## Trainer for model"""
 
@@ -316,13 +141,4 @@ def predict(trainer, text):
     pred_df['label'] = pred_df['label'].replace([0,1,2,3,4,5], ['bao chi','sinh hoat','nghe thuat', 'khoa hoc', 'hanh chinh','chính luận'])
     return pred_df
 
-# text = ["Jessica à, mày đã ngủ với thầy giáo đúng không",
-#         "Em ơi lâu đài tình ái đó , chắc không có trên trần gian",
-#         "Việt Nam là nước có tiềm năng phát triển nấm ăn và nấm dược liệu. Theo thống_kê của Tổ chức Nông lương thế_giới, sản_xuất nấm ở Việt_Nam được xếp hàng thứ chín trong khu_vực. Sản_lượng nấm đạt khoảng 250 nghìn tấn nấm tươi/năm, thấp hơn rất nhiều so với tiềmnăng và các nước trong khu vực",
-#         "Nhằm tăng cường miễn dịch phòng COVID-19 cho những người đã được tiêm chủng đủ liều cơ bản, Ban Chỉ đạo phòng, chống dịch COVID-19 Thành phố xây dựng Kế hoạch tổ chức tiêm vắc xin phòng COVID-19 liều bổ sung và nhắc lại tại Thành phố Hồ Chí Minh, cụ thể như sau",
-#         "Mới đây, ca sĩ Đàm Vĩnh Hưng đã bất ngờ chia sẻ những hình ảnh khá “mát mẻ” của mình trên trang cá nhân. Trong những bức ảnh, Mr Đàm thể hiện sự thư giãn khi tắm hồ bơi ngay trên sân thượng nhà mình, đùa nghịch cùng chim bồ câu và chú cún nhỏ, đặc biệt là khoe cả hình xăm trên ngực trần."
-#         ]
-#
-# pd.set_option('display.max_colwidth', None)
-# predict(trainer, text)
 
