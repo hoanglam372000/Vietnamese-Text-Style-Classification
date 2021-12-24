@@ -136,10 +136,21 @@ def predict(trainer, text):
     preds = np.array(trainer.predict(dataset)[0])
 
     # convert to label
-    label = np.argmax(preds, axis = 1)
-    prob = np.max(softmax(preds, axis = 1), axis = 1)
+    # label = np.argmax(preds, axis = 1)
+    prob = softmax(preds, axis = 1).reshape(-1)
+    pred_df = pd.DataFrame({'label': [0, 1, 2, 3, 4, 5], 'probability': prob}).reset_index(drop = True)
+    pred_df = pred_df.sort_values(by = 'probability', ascending = False)
+
+    pred_df['probability']= pred_df['probability'].apply(lambda x: x * 100)
+    pred_df = pred_df.round({'probability': 2})
+
+    # remove 0s
+    pred_df['probability'] = pred_df['probability'].astype(str)
+    pred_df['probability'] = pred_df['probability'].str.rstrip('0')   
+
     
-    pred_df = pd.DataFrame({'text': text, 'label': label, 'probability': prob})
+    # pred_df = pd.DataFrame({'text': text, 'label': label, 'probability': prob})
     pred_df['label'] = pred_df['label'].replace([0,1,2,3,4,5], ['Phong cách báo chí','Phong cách sinh hoạt hằng ngày','Phong cách nghệ thuật', 'Phong cách khoa học', 'Phong cách hành chính','Phong cách chính luận'])
-    return pred_df
+    final_df = pred_df.reset_index(drop = True)
+    return final_df.loc[0,label], final_df
 
