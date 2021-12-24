@@ -30,8 +30,17 @@ tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True, max_length = max_seq_len)
 
-wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH')
-wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t')
+import gdown
+#wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH')
+url_json = "https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH"
+output_json = "config.json"
+gdown.download(url_json, output_json,quiet=False)
+
+url_bin = "https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t"
+output_bin = "pytorch_model.bin"
+gdown.download(url_bin, output_bin,quiet=False)
+
+#wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t')
 import shutil
 os.mkdir('final_model_6C')
 
