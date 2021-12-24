@@ -30,7 +30,7 @@ tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True, max_length = max_seq_len)
 
-wget.download('https://drive.google.com/uc?export=download&id=1zXQySyx7gWqhOMN3_f9SnSi6PGbLr682H')
+wget.download('https://drive.google.com/uc?export=download&id=1zXQySyx7gWqhOMN3_f9SnSi6PGbLr682')
 import shutil
 shutil.unpack_archive('final_model_6C.zip')
 
