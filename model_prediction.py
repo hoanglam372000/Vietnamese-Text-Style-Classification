@@ -152,5 +152,5 @@ def predict(trainer, text):
     # pred_df = pd.DataFrame({'text': text, 'label': label, 'probability': prob})
     pred_df['label'] = pred_df['label'].replace([0,1,2,3,4,5], ['Phong cách báo chí','Phong cách sinh hoạt hằng ngày','Phong cách nghệ thuật', 'Phong cách khoa học', 'Phong cách hành chính','Phong cách chính luận'])
     final_df = pred_df.reset_index(drop = True)
-    return final_df.loc[0,label], final_df
+    return final_df.loc[0,'label'], final_df
 
