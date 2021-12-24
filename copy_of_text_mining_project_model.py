@@ -32,7 +32,7 @@ def tokenize_function(examples):
 
 wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH', out = 'final_model_6C')
 wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t', out = 'final_model_6C')
-model_load = AutoModelForSequenceClassification.from_pretrained("pretrained_model/final_model_6C")
+model_load = AutoModelForSequenceClassification.from_pretrained("final_model_6C")
 
 #"""## Trainer for model"""
 
