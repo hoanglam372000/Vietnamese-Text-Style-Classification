@@ -32,21 +32,25 @@ def tokenize_function(examples):
 
 import gdown
 #wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH')
-url_json = "https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH"
-output_json = "config.json"
-gdown.download(url_json, output_json,quiet=False)
+# url_json = "https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH"
+# output_json = "config.json"
+# gdown.download(url_json, output_json,quiet=False)
 
-url_bin = "https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t"
-output_bin = "pytorch_model.bin"
-gdown.download(url_bin, output_bin,quiet=False)
+# url_bin = "https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t"
+# output_bin = "pytorch_model.bin"
+# gdown.download(url_bin, output_bin,quiet=False)
 
 #wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t')
 import shutil
-os.mkdir('final_model_6C')
+# os.mkdir('final_model_6C')
 
-#shutil.unpack_archive('final_model_6C.zip')
-shutil.move('config.json', './final_model_6C')
-shutil.move('pytorch_model.bin','./final_model_6C')
+url_zip = "https://drive.google.com/uc?export=download&id=1zXQySyx7gWqhOMN3_f9SnSi6PGbLr682"
+output_zip = "final_model_6C.zip"
+gdown.download(url_zip, output_zip,quiet=False)
+
+shutil.unpack_archive('final_model_6C.zip')
+# shutil.move('config.json', './final_model_6C')
+# shutil.move('pytorch_model.bin','./final_model_6C')
 #
 model_load = AutoModelForSequenceClassification.from_pretrained("final_model_6C")
 
