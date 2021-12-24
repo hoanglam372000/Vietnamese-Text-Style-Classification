@@ -30,8 +30,8 @@ tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 def tokenize_function(examples):
     return tokenizer(examples["text"], padding="max_length", truncation=True, max_length = max_seq_len)
 
-wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH', 'pretrained_model/final_model_6C/config.json')
-wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t', 'pretrained_model/final_model_6C/pytorch_model.bin')
+wget.download('https://drive.google.com/uc?export=download&id=1-6LAadf5ccHnjVFVNHI-AXoul1WRebYH', 'config.json')
+wget.download('https://drive.google.com/uc?export=download&id=1-852eJpSBLwY6SrFj-RV0qhohX8A0S6t', 'pytorch_model.bin')
 model_load = AutoModelForSequenceClassification.from_pretrained("pretrained_model/final_model_6C")
 
 #"""## Trainer for model"""
