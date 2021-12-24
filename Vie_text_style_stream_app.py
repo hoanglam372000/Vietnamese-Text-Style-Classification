@@ -17,6 +17,8 @@ user_input = st.text_input('Vietnamse Text (input a paragraph)')
 
 
 if st.button('Check Text Style'):
-    check_text_style = model_prediction.predict(model_prediction.trainer, [str(user_input)]).loc[0,'label']
-    st.write(check_text_style)
+    main_style, probs_refer =  model_prediction.predict(model_prediction.trainer, [str(user_input)])
+    st.write('Phong cách ngôn ngữ chính của văn bản: ',main_style)
+    st.write('Bảng xác suất các phong cách ngôn ngữ cho văn bản trên: ')
+    st.write(probs_refer)
 
