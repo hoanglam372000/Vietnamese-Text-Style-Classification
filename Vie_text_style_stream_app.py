@@ -17,6 +17,6 @@ user_input = st.text_input('Vietnamse Text (input a paragraph)')
 
 
 if st.button('Check Text Style'):
-    check_text_style = model_prediction.predict(trainer, [str(user_input)]).loc[0,'label']
+    check_text_style = model_prediction.predict(model_prediction.trainer, [str(user_input)]).loc[0,'label']
     st.write(check_text_style)
 
