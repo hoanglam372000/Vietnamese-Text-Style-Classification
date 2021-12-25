@@ -13,7 +13,7 @@ desc = "Vietnamese Text Style Classification!"
 st.title('Vietnamese Text Style Classification')
 st.write(desc)
 
-user_input = st.text_input('Vietnamse Text (input a paragraph)')
+user_input = st.text_area('Vietnamse Text (input a paragraph)')
 
 
 if st.button('Check Text Style'):
