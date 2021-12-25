@@ -14,7 +14,8 @@ from datasets import load_metric
 import re 
 from underthesea import word_tokenize
 import wget
-
+from PIL import Image
+image = Image.open('logoKHTN.png')
 
 
 #"""# Hyperparameters"""
