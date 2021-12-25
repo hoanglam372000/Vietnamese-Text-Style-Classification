@@ -8,6 +8,11 @@
 import model_prediction
 import streamlit as st
 
+uni = st.markdown('<div align="center">**VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY**')
+uni2 = st.markdown('<div align="center">**UNIVERSITY OF SCIENCE**')
+st.write(uni)
+st.write(uni2)
+st.image(model_prediction.image)
 desc = "Vietnamese Text Style Classification!"
 
 st.title('Vietnamese Text Style Classification')
