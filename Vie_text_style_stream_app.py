@@ -11,10 +11,11 @@ import streamlit as st
 st.markdown('<div align="center">**VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY**</div>')
 st.markdown('<div align="center">**UNIVERSITY OF SCIENCE**</div>')
 #st.image(model_prediction.image)
-desc = st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
+#desc = st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
 
 st.title('Vietnamese Text Style Classification')
-st.write(desc)
+st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
+#st.write(desc)
 
 user_input = st.text_area('Vietnamse Text (input a paragraph)')
 
