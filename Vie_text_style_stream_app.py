@@ -18,7 +18,7 @@ st.markdown("<h1 style='text-align: center;font-size:30px'>Vietnamese Text Style
 st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
 #st.write(desc)
 
-user_input = st.text_area('Vietnamse Text (input a paragraph)')
+user_input = st.text_input('Vietnamse Text (input a paragraph)')
 
 
 if st.button('Check Text Style'):
