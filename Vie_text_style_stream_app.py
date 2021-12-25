@@ -13,7 +13,7 @@ uni2 = st.markdown('<div align="center">**UNIVERSITY OF SCIENCE**')
 st.write(uni)
 st.write(uni2)
 st.image(model_prediction.image)
-desc = "Vietnamese Text Style Classification!"
+desc = st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
 
 st.title('Vietnamese Text Style Classification')
 st.write(desc)
