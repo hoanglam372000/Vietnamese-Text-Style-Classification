@@ -8,11 +8,9 @@
 import model_prediction
 import streamlit as st
 
-uni = st.markdown('<div align="center">**VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY**')
-uni2 = st.markdown('<div align="center">**UNIVERSITY OF SCIENCE**')
-st.write(uni)
-st.write(uni2)
-st.image(model_prediction.image)
+st.markdown('<div align="center">**VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY**')
+st.markdown('<div align="center">**UNIVERSITY OF SCIENCE**')
+#st.image(model_prediction.image)
 desc = st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy Nguyen Tien, Son Nguyen Truong*')
 
 st.title('Vietnamese Text Style Classification')
