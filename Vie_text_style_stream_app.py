@@ -19,7 +19,7 @@ st.markdown('**Author:** *Lam Thai Hoang, Tuan Le Ngoc, Hien Pham Thi Hoai, Huy 
 #st.write(desc)
 
 user_input = st.text_area('Vietnamse Text (input a paragraph)')
-
+print(user_input)
 
 if st.button('Check Text Style'):
     main_style, probs_refer =  model_prediction.predict(model_prediction.trainer, [str(user_input)])
